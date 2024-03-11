@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
+import { cn } from '@/lib/utils';
 
 const sairaFont = localFont({
   variable: '--saira-font',
@@ -27,6 +28,13 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(
-    <Component {...pageProps} className={`${sairaFont.variable} font-sans`} />
+    <div
+      className={cn(
+        'min-h-screen bg-background font-sans antialiased',
+        sairaFont.variable
+      )}
+    >
+      <Component {...pageProps} />
+    </div>
   );
 }

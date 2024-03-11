@@ -1,3 +1,5 @@
+import NavBar from '../navBar';
+
 export default function ModuleLayout({
   children,
 }: {
@@ -5,10 +7,8 @@ export default function ModuleLayout({
 }) {
   return (
     <main lang="en">
-      <div>
-        <span>oloni</span>
-        {children}
-      </div>
+      <NavBar />
+      <div className="">{children}</div>
     </main>
   );
 }
