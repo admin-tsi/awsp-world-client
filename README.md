@@ -1,0 +1,1 @@
+# nextjs-tsi-frontend-boilerplate
