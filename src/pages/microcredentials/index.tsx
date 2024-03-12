@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from 'react';
+import { useState, type ReactElement, useEffect } from 'react';
 import ModuleLayout from '@/components/layouts/moduleLayout';
 import { useAppContext } from '@/context/user-context';
 import { NextPageWithLayout } from '@/pages/_app';
@@ -8,7 +8,10 @@ import LearningTabs from '@/components/module_page/learningTabs';
 import Accomplishments from '@/components/module_page/accomplishments';
 
 const Page: NextPageWithLayout = () => {
-  const { hello } = useAppContext();
+  const { token, userInfo } = useAppContext();
+  useEffect(() => {
+    console.log(userInfo);
+  });
   const [activeTab, setActiveTab] = useState('Home');
   let content = null;
 

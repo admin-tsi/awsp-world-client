@@ -29,6 +29,7 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "jose": "^5.2.3",
+    "js-cookie": "^3.0.5",
     "lint-staged": "^15.2.0",
     "lucide": "^0.356.0",
     "lucide-react": "^0.356.0",

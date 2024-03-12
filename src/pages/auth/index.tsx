@@ -1,3 +1,4 @@
+import AuthAPI from '@/services/auth/initUser';
 import getUserInfo from '@/services/auth/initUser';
 import Loading from '@/svg/loading';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -17,7 +18,7 @@ export default function Index() {
 
   const authen = async (token: string) => {
     try {
-      const userInfo = await getUserInfo(token);
+      const userInfo = await AuthAPI.getUserInfo(token);
       if (userInfo) {
         router.push('/microcredentials');
       } else {
