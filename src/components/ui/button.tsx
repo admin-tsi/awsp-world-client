@@ -21,12 +21,14 @@ const buttonVariants = cva(
         seachIcon:
           'absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-neutral',
         navButton: 'rounded-full bg-white text-secondary h-16 w-16',
+        moduleTab: 'bg-background text-white text-[20px]',
       },
       size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
+        moduleTabEl: 'h-10 px-4 pb-5',
       },
     },
     defaultVariants: {

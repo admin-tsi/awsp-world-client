@@ -6,7 +6,7 @@ type Props = {};
 
 const SearchBar = (props: Props) => {
   return (
-    <form className="w-[500px] relative">
+    <form className="w-[500px] relative hidden md:block">
       <div className="relative">
         <input
           type="search"
