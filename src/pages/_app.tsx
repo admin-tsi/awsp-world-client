@@ -4,6 +4,7 @@ import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { cn } from '@/lib/utils';
+import { AppWrapper } from '@/context/user-context';
 
 const sairaFont = localFont({
   variable: '--saira-font',
@@ -34,7 +35,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         sairaFont.variable
       )}
     >
-      <Component {...pageProps} />
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
     </div>
   );
 }
