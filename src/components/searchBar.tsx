@@ -11,7 +11,7 @@ const SearchBar = (props: Props) => {
         <input
           type="search"
           placeholder="Type here..."
-          className="w-full h-10 p-4 rounded-full bg-[#383838] text-white focus:outline-none"
+          className="w-full h-10 p-4 text-sm rounded-full bg-[#383838] text-white focus:outline-none"
         />
         <Button variant="seachIcon">
           <SearchIcon />
