@@ -5,6 +5,7 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { cn } from '@/lib/utils';
 import { AppWrapper } from '@/context/user-context';
+import Providers from '@/services/providers';
 
 const sairaFont = localFont({
   variable: '--saira-font',
@@ -35,9 +36,11 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         sairaFont.variable
       )}
     >
-      <AppWrapper>
-        <Component {...pageProps} />
-      </AppWrapper>
+      <Providers>
+        <AppWrapper>
+          <Component {...pageProps} />
+        </AppWrapper>
+      </Providers>
     </div>
   );
 }
