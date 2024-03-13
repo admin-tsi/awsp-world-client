@@ -1,9 +1,20 @@
 import React from 'react';
 import Card from './microcredentialsCard/card';
+import CardSkeleton from './microcredentialsCard/cardSkeleton';
+import { useAppContext } from '@/context/user-context';
+import { useGetMicrocredentials } from '@/services/microcredentials';
 
 type Props = {};
 
 const HomeTabs = (props: Props) => {
+  const { token } = useAppContext();
+  const {
+    data: microcredentialsData,
+    isLoading,
+    error,
+  } = useGetMicrocredentials(token);
+
+  console.log(microcredentialsData);
   return (
     <div className="h-full px-2 pt-4">
       <div className="flex flex-col space-y-2">
@@ -16,10 +27,7 @@ const HomeTabs = (props: Props) => {
         </span>
       </div>
       <div className="py-5 flex flex-col md:flex-row max-md:space-y-3 md:space-x-3">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {isLoading ? <CardSkeleton /> : <Card />}
       </div>
     </div>
   );
