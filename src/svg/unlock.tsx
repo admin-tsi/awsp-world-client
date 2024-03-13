@@ -14,7 +14,7 @@ const Unlock = (props: Props) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="lucide lucide-lock-keyhole-open"
+      className="lucide lucide-lock-keyhole-open text-primary/80"
     >
       <circle cx="12" cy="16" r="1" />
       <rect width="18" height="12" x="3" y="10" rx="2" />
