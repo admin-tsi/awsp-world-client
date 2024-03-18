@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Unlock from '@/svg/unlock';
 import Lock from '@/svg/lock';
+import Link from 'next/link';
 
 type Props = {
   microCredential: {
@@ -9,11 +10,29 @@ type Props = {
     thumbnail: string;
   };
   accessStatus: boolean;
+  microCredentialId: string;
+  currentId: string;
 };
 
-const Card = ({ microCredential, accessStatus }: Props) => {
+const Card = ({
+  microCredential,
+  accessStatus,
+  microCredentialId,
+  currentId,
+}: Props) => {
+  console.log('Microcredential : ', microCredential.title);
+  console.log('current Id : ', currentId);
+  console.log('microced Id : ', microCredentialId);
+
+  const cardStyles = accessStatus
+    ? 'bg-gradient-to-r from-secondary to-primary md:h-72 md:w-64 w-full rounded-lg p-[1px] cursor-pointer'
+    : 'bg-gradient-to-r from-secondary to-primary md:h-72 md:w-64 w-full rounded-lg p-[1px] cursor-not-allowed';
+
   return (
-    <div className="bg-gradient-to-r from-secondary to-primary md:h-72 md:w-64 w-full rounded-lg p-[1px]">
+    <Link
+      href={`/cours/lessons?microcredential=${microCredentialId}&cours=${currentId}`}
+      className={cardStyles}
+    >
       <div className="h-3/5 w-full rounded-t-lg relative">
         <Image
           src={microCredential.thumbnail}
@@ -31,7 +50,7 @@ const Card = ({ microCredential, accessStatus }: Props) => {
           {microCredential.title}
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

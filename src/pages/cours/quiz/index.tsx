@@ -4,7 +4,7 @@ export default function Index() {
   const { token } = useAppContext();
   return (
     <div>
-      <Button>{token}Click me</Button>
+      <Button>Click me</Button>
     </div>
   );
 }

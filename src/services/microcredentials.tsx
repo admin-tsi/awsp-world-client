@@ -12,3 +12,18 @@ export const useGetMicrocredentials = (token: any) => {
 
   return { data, isLoading, error };
 };
+
+export const useGetMicrocredentialsContent = (
+  token: any,
+  microcredentialId: any
+) => {
+  const { data, isLoading, error } = useSWR(
+    [`/microcredentials/${microcredentialId}`, token],
+    ([url, token]) => fetcher(url, token),
+    {
+      revalidateOnFocus: false,
+    }
+  );
+
+  return { data, isLoading, error };
+};

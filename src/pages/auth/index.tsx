@@ -1,18 +1,20 @@
 import AuthAPI from '@/services/auth/initUser';
-import getUserInfo from '@/services/auth/initUser';
+import { useBearStore } from '@/store/micro';
 import Loading from '@/svg/loading';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function Index() {
   const router = useRouter();
   const params = useSearchParams();
   const token = params.get('t');
+  const setStoreToken = useBearStore((state) => state.setToken);
 
   useEffect(() => {
     if (token) {
       console.log(token);
       authen(token);
+      setStoreToken(token);
     }
   }, [token]);
 

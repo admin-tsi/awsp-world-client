@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         seachIcon:
-          'absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-neutral',
+          'absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-neutral shadow-lg',
         navButton: 'rounded-full bg-white text-secondary h-16 w-16',
         moduleTab: 'bg-background text-white text-[20px]',
       },
