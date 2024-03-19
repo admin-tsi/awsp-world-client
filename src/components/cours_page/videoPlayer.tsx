@@ -8,6 +8,7 @@ function VideoPlayer({}: Props) {
     <MuxPlayer
       className="w-full md:w-4/6 mt-10"
       playbackId="EcHgOK9coz5K4rjSwOkoE7Y7O01201YMIC200RI6lNxnhs"
+      accentColor="#F2DD66"
       metadata={{
         video_id: 'video-id-54321',
         video_title: 'Test video title',
