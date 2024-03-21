@@ -8,12 +8,14 @@ type Props = {
   title: string;
   cours: string[];
   hasQuiz: boolean;
+  quizId?: string;
 };
 
 const Module = (props: Props) => {
-  const { title, cours, hasQuiz } = props;
+  const { title, cours, hasQuiz, quizId } = props;
   const params = useSearchParams();
   const coursId = params.get('cours');
+  const quiz = params.get('quiz');
   const microcredential = params.get('microcredential');
 
   return (
@@ -39,7 +41,12 @@ const Module = (props: Props) => {
         {hasQuiz && (
           <div className="flex items-center space-x-2">
             <Exam />
-            <span>Quiz</span>
+            <Link
+              href={`/cours/quiz?microcredential=${microcredential}&quiz=${quizId}`}
+              className={quiz === quizId ? 'text-primary/80' : ''}
+            >
+              Quiz
+            </Link>
           </div>
         )}
       </div>

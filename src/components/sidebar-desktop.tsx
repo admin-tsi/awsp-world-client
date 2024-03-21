@@ -36,6 +36,7 @@ function SidebarDesktop({}: Props) {
                   title={module.title}
                   cours={module.cours}
                   hasQuiz={module.quizz !== undefined}
+                  quizId={module.quizz}
                 />
               ))}
           </div>
