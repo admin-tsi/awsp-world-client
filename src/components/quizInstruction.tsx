@@ -26,6 +26,7 @@ interface QuizInstructionsProps {
   instructions: string;
   duration: DurationProps;
   champScore: number;
+  onStartQuiz: () => void;
 }
 
 const QuizInstructions: React.FC<QuizInstructionsProps> = ({
@@ -33,6 +34,7 @@ const QuizInstructions: React.FC<QuizInstructionsProps> = ({
   instructions,
   duration,
   champScore,
+  onStartQuiz,
 }) => {
   return (
     <div className="h-full flex justify-center flex-col space-y-4">
@@ -47,9 +49,12 @@ const QuizInstructions: React.FC<QuizInstructionsProps> = ({
             sure to choose the{' '}
             <strong className="text-primary">correct answer</strong> for each
             question before you submit your answer. To pass this quiz, you need
-            to get a total score of {champScore}. Good luck!
+            to get a total score of{' '}
+            <strong className="text-primary">{champScore}</strong>. Good luck!
           </p>
-          <Button variant="start">Get started now </Button>
+          <Button variant="start" onClick={onStartQuiz}>
+            Get started now{' '}
+          </Button>
         </div>
         <div className="w-1/4 flex justify-center">
           <Image
