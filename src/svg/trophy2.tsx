@@ -11,9 +11,9 @@ const Trophy2 = (props: Props) => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-trophy text-accent"
     >
       <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import QuizOption from './quizOption';
 import { Button } from './ui/button';
+import { submitQuizz } from '@/services/quizzeServices';
+import { useBearStore } from '@/store/micro';
 
 interface Option {
   _id: string;
@@ -31,6 +33,7 @@ const QuizComponent: React.FC<{ questions: Question[]; quizzId: string }> = ({
     new Array(questions.length).fill([])
   );
   const [submitting, setSubmitting] = useState(false);
+  const token = useBearStore((state) => state.token);
 
   const handleOptionSelect = (questionIndex: number, optionValue: string) => {
     setAnswers((prevAnswers) => {
@@ -67,11 +70,8 @@ const QuizComponent: React.FC<{ questions: Question[]; quizzId: string }> = ({
       })),
     };
 
-    console.log(submission);
-
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 1000);
+    const res = await submitQuizz(token, submission);
+    setSubmitting(false);
   };
 
   return (
@@ -108,7 +108,11 @@ const QuizComponent: React.FC<{ questions: Question[]; quizzId: string }> = ({
       <div className="w-full h-fit flex items-center justify-end">
         {' '}
         <Button variant="start" type="submit">
-          Submit
+          {submitting ? (
+            <span className="animate-pulse">Submitting ...</span>
+          ) : (
+            <span>Submit</span>
+          )}
         </Button>
       </div>
     </form>
