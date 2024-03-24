@@ -17,8 +17,6 @@ export default function Page() {
     error,
   } = useGetCoursDescription(token, coursId);
 
-  console.log(description);
-
   return (
     <div className="pt-20 pb-5 px-5 bg-black h-[100dvh] text-white text-5xl overflow-y-scroll flex flex-col space-y-10 items-center">
       <VideoPlayer />

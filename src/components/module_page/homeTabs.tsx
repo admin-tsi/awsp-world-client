@@ -1,10 +1,20 @@
+import { useAppContext } from '@/context/user-context';
+import { useGetMicrocredentials } from '@/services/microcredentials';
 import React from 'react';
 import Card from './microcredentialsCard/card';
 import CardSkeleton from './microcredentialsCard/cardSkeleton';
-import { useAppContext } from '@/context/user-context';
-import { useGetMicrocredentials } from '@/services/microcredentials';
-import { MicroCredentialData } from '@/types/microCredentialObject';
-import { useBearStore } from '@/store/micro';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 
 const HomeTabs = () => {
   const { token } = useAppContext();
@@ -41,13 +51,45 @@ const HomeTabs = () => {
                 ? microcredential.modules[0].module.cours[0]
                 : null;
             return (
-              <Card
-                key={microcredential.micro_credential._id}
-                microCredential={microcredential.micro_credential}
-                accessStatus={microcredential.accessStatus}
-                microCredentialId={microcredential.micro_credential._id}
-                currentId={firstCourseId}
-              />
+              <React.Fragment key={microcredential.micro_credential._id}>
+                {microcredential.accessStatus ? (
+                  <Card
+                    microCredential={microcredential.micro_credential}
+                    accessStatus={microcredential.accessStatus}
+                    microCredentialId={microcredential.micro_credential._id}
+                    currentId={firstCourseId}
+                  />
+                ) : (
+                  <AlertDialog key={microcredential.micro_credential._id}>
+                    <AlertDialogTrigger asChild>
+                      <button>
+                        <Card
+                          microCredential={microcredential.micro_credential}
+                          accessStatus={microcredential.accessStatus}
+                          microCredentialId={
+                            microcredential.micro_credential._id
+                          }
+                          currentId={firstCourseId}
+                        />
+                      </button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Access Denied</AlertDialogTitle>
+                        <AlertDialogDescription className="text-white/80">
+                          You do not have permission to access this content.
+                          Please purchase the appropriate subscription to
+                          continue. You can do so from your member space.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        {/* <AlertDialogAction>Continue</AlertDialogAction> */}
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+              </React.Fragment>
             );
           })}
         </div>

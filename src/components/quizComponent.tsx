@@ -75,10 +75,10 @@ const QuizComponent: React.FC<{ questions: Question[]; quizzId: string }> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col space-y-5 w-2/3">
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-5 md:w-2/3">
       {questions.map((question, index) => (
         <div key={question._id} className="space-y-2">
-          <h2 className="text-[30px] text-primary/80">
+          <h2 className="text-xl md:text-[30px] text-primary/80">
             Question {index + 1} : {question.question}
           </h2>
           <div className="flex flex-col space-y-4 py-4">

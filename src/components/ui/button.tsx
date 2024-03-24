@@ -10,7 +10,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-        start: 'bg-primary text-black hover:bg-primary/80 w-fit p-5 text-lg',
+        start:
+          'bg-primary/80 md:bg-primary text-black hover:bg-primary/80 w-fit p-5 text-lg',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
@@ -23,6 +24,8 @@ const buttonVariants = cva(
           'absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-neutral shadow-lg',
         navButton: 'rounded-full bg-white text-secondary h-16 w-16',
         moduleTab: 'bg-background text-white text-[20px]',
+        cancel:
+          ' border-input bg-primary hover:bg-primary/80 hover:text-accent-foreground',
       },
       size: {
         default: 'h-10 px-4 py-2',
