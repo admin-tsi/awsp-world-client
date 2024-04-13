@@ -1,6 +1,6 @@
-import CoursLayout from '@/components/layouts/coursLayout';
-import QuizComponent from '@/components/quizComponent';
-import QuizInstructions from '@/components/quizInstruction';
+import CoursLayout from '@/components/Layouts/CoursLayout';
+import QuizComponent from '@/components/QuizPage/QuizComponent';
+import QuizInstructions from '@/components/QuizPage/QuizInstruction';
 import { useGetQuizz } from '@/services/quizzeServices';
 import { useBearStore } from '@/store/micro';
 import Loading from '@/svg/loading';
@@ -35,10 +35,13 @@ export default function Page() {
         )
       ) : (
         <div className="h-full flex flex-col items-center justify-start pt-10 w-full">
-          <QuizComponent
-            questions={quizData.questions}
-            quizzId={quizData._id}
-          />
+          {quizData && (
+            <QuizComponent
+              questions={quizData.questions}
+              quizzId={quizData._id}
+              duration={quizData.duration}
+            />
+          )}
         </div>
       )}
     </div>

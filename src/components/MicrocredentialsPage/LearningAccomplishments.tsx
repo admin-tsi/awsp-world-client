@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import img2 from '../../../../public/image(3).png';
+import img2 from '../../../public/image(3).png';
 import Link from 'next/link';
 import Facebook from '@/svg/facebook';
 import Instagram from '@/svg/instagram';

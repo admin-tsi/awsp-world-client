@@ -4,9 +4,17 @@ import Video from '@/svg/video';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+type Course = {
+  _id: string;
+  title: string;
+  video: string;
+  description: string;
+  __v: number;
+};
+
 type Props = {
   title: string;
-  cours: string[];
+  cours: Course | null;
   hasQuiz: boolean;
   quizId?: string;
 };
@@ -27,22 +35,34 @@ const Module = (props: Props) => {
         </div>
       </div>
       <div className="flex flex-col pl-3 text-sm space-y-3">
-        {cours.map((course, index) => (
-          <div key={index} className="flex items-center space-x-2">
+        {Array.isArray(cours) ? (
+          cours.map((course, index) => (
+            <div key={index} className="flex items-center space-x-2">
+              <Video />
+              <Link
+                href={`/course?microcredential=${microcredential}&cours=${course._id}`}
+                className={course._id === coursId ? 'text-primary/80' : ''}
+              >
+                {course.title}
+              </Link>
+            </div>
+          ))
+        ) : (
+          <Link
+            href={`/course?microcredential=${microcredential}&cours=${cours?._id}`}
+            className="flex items-center space-x-2"
+          >
             <Video />
-            <Link
-              href={`/cours/lessons?microcredential=${microcredential}&cours=${course}`}
-              className={course === coursId ? 'text-primary/80' : ''}
-            >
-              {course}
-            </Link>
-          </div>
-        ))}
+            <span className={cours?._id === coursId ? 'text-primary/80' : ''}>
+              {cours?.title}
+            </span>
+          </Link>
+        )}
         {hasQuiz && (
           <div className="flex items-center space-x-2">
             <Exam />
             <Link
-              href={`/cours/quiz?microcredential=${microcredential}&quiz=${quizId}`}
+              href={`/quiz?microcredential=${microcredential}&quiz=${quizId}`}
               className={quiz === quizId ? 'text-primary/80' : ''}
             >
               Quiz

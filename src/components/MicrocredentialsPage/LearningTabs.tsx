@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Process from './learninTabsContent.tsx/process';
-import Complete from './learninTabsContent.tsx/complete';
+import Process from './Process';
+import Complete from './Complete';
 
 type Props = {};
 

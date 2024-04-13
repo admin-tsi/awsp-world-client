@@ -1,20 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import Unlock from '@/svg/unlock';
 import Lock from '@/svg/lock';
+import Unlock from '@/svg/unlock';
+import Image from 'next/image';
 import Link from 'next/link';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
 
 type Props = {
   microCredential: {
@@ -32,13 +19,9 @@ const Card = ({
   microCredentialId,
   currentId,
 }: Props) => {
-  const cardStyles = accessStatus
-    ? 'bg-gradient-to-r from-secondary to-primary md:h-72 md:w-64 w-full rounded-lg p-[1px] cursor-pointer'
-    : 'bg-gradient-to-r from-secondary to-primary md:h-72 md:w-64 w-full rounded-lg p-[1px] cursor-not-allowed';
-
   return accessStatus ? (
     <Link
-      href={`/cours/lessons?microcredential=${microCredentialId}&cours=${currentId}`}
+      href={`/course?microcredential=${microCredentialId}&cours=${currentId}`}
       className="bg-gradient-to-r from-secondary to-primary md:h-72 md:w-64 w-full rounded-lg p-[1px] cursor-pointer"
     >
       <div className="h-3/5 w-full rounded-t-lg relative">

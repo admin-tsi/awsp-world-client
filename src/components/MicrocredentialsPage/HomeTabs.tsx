@@ -1,11 +1,5 @@
-import { useAppContext } from '@/context/user-context';
-import { useGetMicrocredentials } from '@/services/microcredentials';
-import React from 'react';
-import Card from './microcredentialsCard/card';
-import CardSkeleton from './microcredentialsCard/cardSkeleton';
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -14,7 +8,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
+import { useAppContext } from '@/context/user-context';
+import { useGetMicrocredentials } from '@/services/microcredentials';
+import React from 'react';
+import CardSkeleton from '../Skeleton/CardSkeleton';
+import Card from './Card';
 
 const HomeTabs = () => {
   const { token } = useAppContext();
@@ -48,7 +46,7 @@ const HomeTabs = () => {
           {microcredentialsData.map((microcredential: any) => {
             const firstCourseId =
               microcredential.modules && microcredential.modules.length > 0
-                ? microcredential.modules[0].module.cours[0]
+                ? microcredential.modules[0].module.cours
                 : null;
             return (
               <React.Fragment key={microcredential.micro_credential._id}>

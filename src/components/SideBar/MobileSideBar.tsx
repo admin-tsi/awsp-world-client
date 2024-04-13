@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { useGetMicrocredentialsContent } from '@/services/microcredentials';
 import { useBearStore } from '@/store/micro';
 import BackMobile from '@/svg/backMobile';
 import Loading from '@/svg/loading';
 import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
-import Module from './cours_page/module';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import Module from '../CoursePage/module';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -59,13 +58,13 @@ const MobileSideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         ) : (
           <div className="mx-3 flex flex-col space-y-10">
             {microcredentialsData &&
-              microcredentialsData.modules.map((module: any) => (
+              microcredentialsData.modules.map((moduleData: any) => (
                 <Module
-                  key={module._id}
-                  title={module.title}
-                  cours={module.cours}
-                  hasQuiz={module.quizz !== undefined}
-                  quizId={module.quizz}
+                  key={moduleData.module.id}
+                  title={moduleData.module.title}
+                  cours={moduleData.cours}
+                  hasQuiz={moduleData.quizz !== undefined}
+                  quizId={moduleData.quizz?._id}
                 />
               ))}
           </div>

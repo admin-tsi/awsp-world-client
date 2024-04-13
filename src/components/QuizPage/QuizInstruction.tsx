@@ -1,33 +1,25 @@
 import React from 'react';
-import testImage from '../../public/onlinetest.png';
+import testImage from '../../../public/onlinetest.png';
 import Image from 'next/image';
-import { Button } from './ui/button';
-
-interface DurationProps {
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-const formatDuration = (duration: DurationProps): string => {
-  const { hours, minutes, seconds } = duration;
-
-  if (hours > 0) {
-    return `${hours} hours ${minutes} minutes`;
-  } else if (minutes > 0) {
-    return `${minutes} minutes`;
-  } else {
-    return `${seconds} seconds`;
-  }
-};
+import { Button } from '../ui/button';
 
 interface QuizInstructionsProps {
   name: string;
   instructions: string;
-  duration: DurationProps;
+  duration: string;
   champScore: number;
   onStartQuiz: () => void;
 }
+
+const formatDuration = (duration: string): string => {
+  const [hours, minutes] = duration.split(':');
+
+  if (hours !== '00') {
+    return `${hours} hours ${minutes} minutes`;
+  } else {
+    return `${minutes} minutes`;
+  }
+};
 
 const QuizInstructions: React.FC<QuizInstructionsProps> = ({
   name,
@@ -44,7 +36,7 @@ const QuizInstructions: React.FC<QuizInstructionsProps> = ({
           <p className="text-lg">
             For this quiz, you will have to{' '}
             <strong className="text-primary/80 md:text-primary">
-              {instructions}
+              {instructions.toLowerCase().split('.').join('')}
             </strong>{' '}
             in{' '}
             <strong className="text-primary/80 md:text-primary">

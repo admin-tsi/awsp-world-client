@@ -1,5 +1,5 @@
 import React from 'react';
-import LearningAccomplishments from './accomplishementTabsContent/learningAccomplishments';
+import LearningAccomplishments from './LearningAccomplishments';
 
 type Props = {};
 

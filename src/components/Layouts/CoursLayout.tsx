@@ -1,12 +1,25 @@
 'use client';
 import { useAppContext } from '@/context/user-context';
+import { cn } from '@/lib/utils';
 import { useGetMicrocredentialsContent } from '@/services/microcredentials';
+import localFont from 'next/font/local';
 import { useSearchParams } from 'next/navigation';
-import SidebarDesktop from '../sidebar-desktop';
-import CourseNav from '../courseNav';
 import { useState } from 'react';
-import ToggleButton from '../toggleMobileSidBar';
-import MobileSideBar from '../mobileSideBar';
+import CourseNav from '../NavBar/CourseNav';
+import SidebarDesktop from '../SideBar/DesktopSidebar';
+import MobileSideBar from '../SideBar/MobileSideBar';
+import ToggleButton from '../SideBar/ToggleMobileSidBar';
+
+const sairaFont = localFont({
+  variable: '--saira-font',
+  display: 'swap',
+  src: [
+    {
+      path: '../../fonts/Saira-VariableFont_wdth,wght.ttf',
+      weight: 'variable',
+    },
+  ],
+});
 
 export default function CoursLayout({
   children,
@@ -30,7 +43,7 @@ export default function CoursLayout({
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <main lang="en" className="flex">
+    <main lang="en" className={cn('flex', sairaFont.variable)}>
       <div className="w-1/6 hidden md:block">
         <SidebarDesktop />
       </div>

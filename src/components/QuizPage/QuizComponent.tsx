@@ -1,10 +1,9 @@
 import { submitQuizz } from '@/services/quizzeServices';
 import { useBearStore } from '@/store/micro';
 import React, { useState } from 'react';
-import { AlertDestructive } from './quizIncompleteWarning';
-import { Button } from './ui/button';
-import { Timer } from 'lucide-react';
-import Duration from './duration';
+import { AlertDestructive } from './QuizIncompleteWarning';
+import { Button } from '../ui/button';
+import Duration from './Duration';
 
 interface Option {
   _id: string;
@@ -27,13 +26,13 @@ interface Question {
   options: Option[];
 }
 
-const QuizComponent: React.FC<{ questions: Question[]; quizzId: string }> = ({
-  questions,
-  quizzId,
-}) => {
-  const [answers, setAnswers] = useState<string[][]>(
-    new Array(questions.length).fill([])
-  );
+const QuizComponent: React.FC<{
+  questions: Question[];
+  quizzId: string;
+  duration: string;
+}> = ({ questions, quizzId, duration }) => {
+  const [answers, setAnswers] = useState<string[][]>(questions.map(() => []));
+
   const [showIncompleteWarning, setShowIncompleteWarning] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const token = useBearStore((state) => state.token);
@@ -85,7 +84,7 @@ const QuizComponent: React.FC<{ questions: Question[]; quizzId: string }> = ({
     <>
       <div className="w-full flex justify-end items-center md:w-2/3">
         <div className="bg-gradient-to-r from-secondary to-primary p-[1px] rounded-md">
-          <Duration duration={50} />
+          <Duration duration={duration} />
         </div>
       </div>
       <form

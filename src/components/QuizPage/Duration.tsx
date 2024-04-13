@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 interface TimerProps {
-  duration: number;
+  duration: string;
 }
 
 const Duration: React.FC<TimerProps> = ({ duration }) => {
-  const [timeLeft, setTimeLeft] = useState<number>(duration);
+  const initialDuration = parseInt(duration, 10);
+  const [timeLeft, setTimeLeft] = useState<number>(initialDuration);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,14 +20,15 @@ const Duration: React.FC<TimerProps> = ({ duration }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [duration]);
+  }, [initialDuration]);
 
   const formatTime = (time: number): string => {
-    const minutes = Math.floor(time / 60);
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds
+    return `${hours.toString().padStart(2, '0')}:${minutes
       .toString()
-      .padStart(2, '0')}`;
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (

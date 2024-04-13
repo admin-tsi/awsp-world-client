@@ -1,11 +1,14 @@
-import React from 'react';
-import img2 from '../../../../public/image(3).png';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import img2 from '../../../public/image(3).png';
+
+import React from 'react';
+import Image from 'next/image';
+import Trophy1 from '@/svg/trophy1';
+import Trophy2 from '@/svg/trophy2';
 
 type Props = {};
 
-const Process = (props: Props) => {
+const Complete = (props: Props) => {
   return (
     <div className="w-full bg-white h-32 md:h-52 rounded-lg flex items-center p-2 md:p-4 max-md:space-x-2">
       <div className="w-1/2 md:w-1/6">
@@ -27,23 +30,29 @@ const Process = (props: Props) => {
         <span className="text-[#3D3D3D] font-semibold text-[20px] md:text-[24px]">
           Worem ipsum dolor{' '}
         </span>
-        <span className="text-[#656565] md:hidden">2hr</span>
-        <div className="flex max-md:hidden items-center space-x-6 text-[#656565]">
-          <span>Horem ipsum dolor sit amet, consectetur adipiscing elit</span>
-          <span>2hr</span>
+        <div className="w-full flex items-center space-x-2 md:hidden">
+          <Trophy1 />
+          <span>Congrate</span>
+        </div>
+        <div className="md:flex items-center hidden space-x-2 text-[#656565]">
+          <Trophy2 />
+          <span>
+            Great Work! You have passed all requirements and can view your
+            course certificate now.
+          </span>
         </div>
       </div>
       <div className="w-1/6 items-center hidden md:flex">
         <div className="w-[2px] bg-gradient-to-b from-[#E50E2D] to-[#F2DD66] h-40"></div>
         <div className="w-full flex flex-col space-y-4 relative justify-center items-center">
           <Button className="text-neutral font-semibold w-[228px] h-[65px] text-[24px]">
-            Go To Course
+            View Certificate
           </Button>
-          <span className="text-[#656565] text-[20px]">Reset date</span>
+          <span className="text-[#656565] text-[20px]">Rate</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Process;
+export default Complete;

@@ -1,7 +1,7 @@
-import ModuleLayout from '@/components/layouts/moduleLayout';
-import Accomplishments from '@/components/module_page/accomplishments';
-import HomeTabs from '@/components/module_page/homeTabs';
-import LearningTabs from '@/components/module_page/learningTabs';
+import ModuleLayout from '@/components/Layouts/ModuleLayout';
+import Accomplishments from '@/components/MicrocredentialsPage/Accomplishments';
+import HomeTabs from '@/components/MicrocredentialsPage/HomeTabs';
+import LearningTabs from '@/components/MicrocredentialsPage/LearningTabs';
 import { Button } from '@/components/ui/button';
 import { NextPageWithLayout } from '@/pages/_app';
 import { useState, type ReactElement } from 'react';

@@ -1,11 +1,10 @@
 import ArrowNav from '@/svg/arrowNav';
 import BelIcon from '@/svg/belIcon';
 import ExitIcon from '@/svg/exitIcon';
-import logo from '../../public/logo_AWSP.png';
-import React from 'react';
-import { Button } from './ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import logo from '../../../public/logo_AWSP.png';
+import { Button } from '../ui/button';
 
 type Props = {};
 
@@ -16,7 +15,7 @@ const CourseNav = (props: Props) => {
         <div className="bg-white/75 h-10 w-10 rounded-full flex justify-center items-center">
           <ArrowNav />
         </div>
-        <Link href="/microcredentials" className="text-primary">
+        <Link href="/microcredentials" className="text-primary font-sans">
           All microcredentials
         </Link>
       </div>
@@ -24,7 +23,7 @@ const CourseNav = (props: Props) => {
         <Image src={logo} alt="Logo AWSP" />
       </div>
       <div className="flex items-center space-x-5">
-        <span className="hidden md:block bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+        <span className="hidden md:block bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent font-sans">
           Mark as Complete
         </span>
         <div className="bg-secondary w-1 h-8 hidden md:block"></div>
