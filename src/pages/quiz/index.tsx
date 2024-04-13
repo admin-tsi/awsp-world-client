@@ -1,7 +1,7 @@
 import CoursLayout from '@/components/Layouts/CoursLayout';
 import QuizComponent from '@/components/QuizPage/QuizComponent';
 import QuizInstructions from '@/components/QuizPage/QuizInstruction';
-import { useGetQuizz } from '@/services/quizzeServices';
+import { useGetQuizz } from '@/services/quizServices';
 import { useBearStore } from '@/store/micro';
 import Loading from '@/svg/loading';
 import { useSearchParams } from 'next/navigation';

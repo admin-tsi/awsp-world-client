@@ -5,7 +5,7 @@ import Loading from '@/svg/loading';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import Module from '../CoursePage/module';
+import Module from '../CoursePage/Module';
 
 interface SidebarProps {
   isOpen: boolean;

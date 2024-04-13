@@ -2,7 +2,7 @@ import { useGetMicrocredentialsContent } from '@/services/microcredentials';
 import { useBearStore } from '@/store/micro';
 import Loading from '@/svg/loading';
 import { useSearchParams } from 'next/navigation';
-import Module from '../CoursePage/module';
+import Module from '../CoursePage/Module';
 
 type Props = {};
 

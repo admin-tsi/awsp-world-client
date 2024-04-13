@@ -1,5 +1,5 @@
-import CoursDescription from '@/components/CoursePage/coursDescription';
-import VideoPlayer from '@/components/CoursePage/videoPlayer';
+import CoursDescription from '@/components/CoursePage/CoursDescription';
+import VideoPlayer from '@/components/CoursePage/VideoPlayer';
 import CoursLayout from '@/components/Layouts/CoursLayout';
 import { useGetCoursDescription } from '@/services/coursServices';
 import { useBearStore } from '@/store/micro';

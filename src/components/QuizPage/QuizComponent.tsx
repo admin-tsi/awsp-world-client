@@ -1,4 +1,4 @@
-import { submitQuizz } from '@/services/quizzeServices';
+import { submitQuizz } from '@/services/quizServices';
 import { useBearStore } from '@/store/micro';
 import React, { useState } from 'react';
 import { AlertDestructive } from './QuizIncompleteWarning';
