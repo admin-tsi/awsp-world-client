@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { redirect } from 'next/navigation';
 
 async function getUserInfo(token: any) {
   const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || '';
