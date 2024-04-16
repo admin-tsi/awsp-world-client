@@ -21,7 +21,7 @@ const Complete = (props: Props) => {
         />
       </div>
 
-      <div className="flex flex-col justify-between h-full md:py-5 w-1/2 md:w-4/6">
+      <div className="flex flex-col justify-between h-full md:py-5 md:px-5 w-1/2 md:w-4/6">
         <div className="w-full flex items-center space-x-5">
           <span className="text-[#656565]">Norem ipsum dolor</span>
           <div className="w-[2px] bg-gradient-to-b from-[#E50E2D] to-[#F2DD66] h-5 hidden md:block"></div>
@@ -42,8 +42,8 @@ const Complete = (props: Props) => {
           </span>
         </div>
       </div>
+      <div className="w-[2px] bg-gradient-to-b from-[#E50E2D] to-[#F2DD66] h-40 mr-2 hidden md:block"></div>
       <div className="w-1/6 items-center hidden md:flex">
-        <div className="w-[2px] bg-gradient-to-b from-[#E50E2D] to-[#F2DD66] h-40"></div>
         <div className="w-full flex flex-col space-y-4 relative justify-center items-center">
           <Button className="text-neutral font-semibold w-[228px] h-[65px] text-[24px]">
             View Certificate

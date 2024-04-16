@@ -20,7 +20,7 @@ const LearningAccomplishments = (props: Props) => {
         />
       </div>
 
-      <div className="flex flex-col justify-between h-full py-4 md:py-5 w-1/2 md:w-4/6">
+      <div className="flex flex-col justify-between h-full py-4 md:p-5 w-1/2 md:w-4/6">
         <span className="text-[#3D3D3D] font-semibold text-[18px] md:text-[24px]">
           Worem ipsum dolor{' '}
         </span>

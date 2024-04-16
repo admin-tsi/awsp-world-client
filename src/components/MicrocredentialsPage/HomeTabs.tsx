@@ -73,15 +73,19 @@ const HomeTabs = () => {
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Access Denied</AlertDialogTitle>
-                        <AlertDialogDescription className="text-white/80">
+                        <AlertDialogTitle className="font-sans">
+                          Access Denied
+                        </AlertDialogTitle>
+                        <AlertDialogDescription className="text-white/80 font-sans">
                           You do not have permission to access this content.
                           Please purchase the appropriate subscription to
                           continue. You can do so from your member space.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel className="font-sans">
+                          Cancel
+                        </AlertDialogCancel>
                         {/* <AlertDialogAction>Continue</AlertDialogAction> */}
                       </AlertDialogFooter>
                     </AlertDialogContent>

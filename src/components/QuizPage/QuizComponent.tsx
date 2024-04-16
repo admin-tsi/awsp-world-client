@@ -62,6 +62,7 @@ const QuizComponent: React.FC<{
       setShowIncompleteWarning(true);
       return;
     }
+    setShowIncompleteWarning(false);
     setSubmitting(true);
 
     const submission: QuizSubmission = {
@@ -71,6 +72,8 @@ const QuizComponent: React.FC<{
         answer: answers[index],
       })),
     };
+
+    console.log(submission);
 
     const res = await submitQuizz(token, submission);
     setSubmitting(false);
@@ -82,14 +85,14 @@ const QuizComponent: React.FC<{
 
   return (
     <>
-      <div className="w-full flex justify-end items-center md:w-2/3">
+      {/* <div className="w-full flex justify-end items-center md:w-2/3">
         <div className="bg-gradient-to-r from-secondary to-primary p-[1px] rounded-md">
           <Duration duration={duration} />
         </div>
-      </div>
+      </div> */}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col space-y-5 md:w-2/3"
+        className="flex flex-col space-y-5 md:w-2/3 justify-center pt-12"
       >
         {questions.map((question, index) => (
           <div key={question._id} className="space-y-2">
@@ -134,7 +137,7 @@ const QuizComponent: React.FC<{
 
       {showIncompleteWarning && (
         <div
-          className={`h-fit w-fit absolute max-md:top-24 md:bottom-10 max-md:bg-background  md:right-5 z-10 transition-all duration-500 ease-in-out transform ${
+          className={`h-fit w-fit absolute max-md:top-24 md:top-28 max-md:bg-background  md:right-5 z-10 transition-all duration-500 ease-in-out transform ${
             showIncompleteWarning ? 'opacity-100' : 'opacity-0'
           }`}
         >
