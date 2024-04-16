@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { redirect } from 'next/navigation';
 
 async function getUserInfo(token: any) {
   const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || '';
@@ -10,6 +9,7 @@ async function getUserInfo(token: any) {
 
   try {
     const url = `${baseUrl}/auth/verify-token`;
+    const redirectUrl = process.env.NEXT_PUBLIC_AWSP_AFRICA_URL;
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {

@@ -9,6 +9,7 @@ export default function Index() {
   const params = useSearchParams();
   const token = params.get('t');
   const setStoreToken = useBearStore((state) => state.setToken);
+  const redirectUrl = process.env.NEXT_PUBLIC_AWSP_AFRICA_URL;
 
   useEffect(() => {
     if (token) {
@@ -24,10 +25,10 @@ export default function Index() {
       if (userInfo) {
         router.push('/microcredentials');
       } else {
-        router.push('/');
+        router.push('/error');
       }
     } catch (error) {
-      router.push('/');
+      router.push('/error');
     }
   };
 
