@@ -21,10 +21,6 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           }
           return value;
         } catch (error) {
-          console.error(
-            'Erreur lors de la récupération du token du localStorage:',
-            error
-          );
           localStorage.removeItem('token');
           return null;
         }

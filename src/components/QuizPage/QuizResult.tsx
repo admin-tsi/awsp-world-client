@@ -2,30 +2,42 @@ import React from 'react';
 import Image from 'next/image';
 import successImage from '../../../public/winner.svg';
 import failureImage from '../../../public/failure.svg';
+import { QuizSubmissionResponse } from '@/types/quizInterfaces';
 
-type Props = {
-  resultType: 'success' | 'failure';
-};
+interface QuizResultProps {
+  result: QuizSubmissionResponse | null;
+}
 
-const QuizResult = (props: Props) => {
-  const { resultType } = props;
+const QuizResult: React.FC<QuizResultProps> = ({ result }) => {
+  if (!result) {
+    return null;
+  }
 
   return (
     <div className="h-full flex flex-col justify-center items-center">
-      {resultType === 'success' ? (
-        <Image src={successImage} alt="success" height={200} />
+      {result.decision === 'PASS' ? (
+        <Image src={successImage} alt="PASS" height={200} />
       ) : (
         <Image src={failureImage} alt="failure" height={200} />
       )}
       <div className="w-2/5 flex flex-col items-center justify-center space-y-4 mt-2">
         <span className="text-primary">
-          {resultType === 'success' ? 'Congratulations' : 'Oops!'}
+          {result.decision === 'PASS' ? 'Congratulations' : 'Oops!'}
         </span>
-        <p className="text-xl text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sint vitae eum aspernatur
-          vero iure.
-        </p>
+        {result.decision === 'FAIL' && (
+          <p className="text-xl text-center">
+            Unfortunately, you have failed this test with a score of{' '}
+            {result.score}, the expected score being {result.quizzScore}. Better
+            luck next time!
+          </p>
+        )}
+        {result.decision === 'PASS' && (
+          <p className="text-xl text-center">
+            Congratulations, you have passed this test with a score of{' '}
+            {result.score}, the expected score being {result.quizzScore}. Keep
+            up the good work!
+          </p>
+        )}
       </div>
     </div>
   );

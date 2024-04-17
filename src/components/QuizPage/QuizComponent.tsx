@@ -1,31 +1,14 @@
 import { submitQuizz } from '@/services/quizServices';
 import { useBearStore } from '@/store/micro';
 import React, { useState } from 'react';
-import { AlertDestructive } from './QuizIncompleteWarning';
 import { Button } from '../ui/button';
-import Duration from './Duration';
+import { AlertDestructive } from './QuizIncompleteWarning';
 import QuizResult from './QuizResult';
-
-interface Option {
-  _id: string;
-  option: string;
-}
-
-interface Answer {
-  questionId: string;
-  answer: string[];
-}
-
-interface QuizSubmission {
-  quizzId: string;
-  questionAnswers: Answer[];
-}
-
-interface Question {
-  _id: string;
-  question: string;
-  options: Option[];
-}
+import {
+  Question,
+  QuizSubmission,
+  QuizSubmissionResponse,
+} from '@/types/quizInterfaces';
 
 const QuizComponent: React.FC<{
   questions: Question[];
@@ -34,8 +17,12 @@ const QuizComponent: React.FC<{
 }> = ({ questions, quizzId, duration }) => {
   const [answers, setAnswers] = useState<string[][]>(questions.map(() => []));
   const [submit, setSubmit] = useState(false);
-
-  const [showIncompleteWarning, setShowIncompleteWarning] = useState(false);
+  const [submissionResponse, setSubmissionResponse] =
+    useState<QuizSubmissionResponse | null>(null);
+  const [showIncompleteWarning, setShowIncompleteWarning] = useState<{
+    show: boolean;
+    errorMessage: string;
+  }>({ show: false, errorMessage: '' });
   const [submitting, setSubmitting] = useState(false);
   const token = useBearStore((state) => state.token);
 
@@ -61,10 +48,13 @@ const QuizComponent: React.FC<{
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isAllQuestionsAnswered()) {
-      setShowIncompleteWarning(true);
+      setShowIncompleteWarning({
+        show: true,
+        errorMessage: 'You must answer all questions before submitting.',
+      });
       return;
     }
-    setShowIncompleteWarning(false);
+    setShowIncompleteWarning({ show: false, errorMessage: '' });
     setSubmitting(true);
 
     const submission: QuizSubmission = {
@@ -75,14 +65,23 @@ const QuizComponent: React.FC<{
       })),
     };
 
-    console.log(submission);
-
-    const res = await submitQuizz(token, submission);
-    setSubmitting(false);
+    try {
+      const res: QuizSubmissionResponse = await submitQuizz(token, submission);
+      setSubmissionResponse(res);
+      setSubmit(true);
+    } catch (error) {
+      setSubmissionResponse(null);
+      setShowIncompleteWarning({
+        show: true,
+        errorMessage: 'An error occurred while submitting the quiz.',
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const hideIncompleteWarning = () => {
-    setShowIncompleteWarning(false);
+    setShowIncompleteWarning({ show: false, errorMessage: '' });
   };
 
   return (
@@ -93,7 +92,7 @@ const QuizComponent: React.FC<{
         </div>
       </div> */}
       {submit ? (
-        <QuizResult resultType="failure" />
+        <QuizResult result={submissionResponse} />
       ) : (
         <form
           onSubmit={handleSubmit}
@@ -141,13 +140,16 @@ const QuizComponent: React.FC<{
         </form>
       )}
 
-      {showIncompleteWarning && (
+      {showIncompleteWarning.show && (
         <div
           className={`h-fit w-fit absolute max-md:top-24 md:top-28 max-md:bg-background  md:right-5 z-10 transition-all duration-500 ease-in-out transform ${
-            showIncompleteWarning ? 'opacity-100' : 'opacity-0'
+            showIncompleteWarning.show ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <AlertDestructive onHideWarning={hideIncompleteWarning} />
+          <AlertDestructive
+            onHideWarning={hideIncompleteWarning}
+            description={showIncompleteWarning.errorMessage}
+          />
         </div>
       )}
     </>

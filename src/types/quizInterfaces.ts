@@ -1,0 +1,27 @@
+export interface Option {
+  _id: string;
+  option: string;
+}
+
+export interface Answer {
+  questionId: string;
+  answer: string[];
+}
+
+export interface QuizSubmission {
+  quizzId: string;
+  questionAnswers: Answer[];
+}
+
+export interface Question {
+  _id: string;
+  question: string;
+  options: Option[];
+}
+
+export interface QuizSubmissionResponse {
+  decision: string;
+  percentage: string;
+  quizzScore: number;
+  score: number;
+}

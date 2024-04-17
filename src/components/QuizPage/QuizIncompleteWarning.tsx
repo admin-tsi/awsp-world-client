@@ -1,15 +1,19 @@
 import { AlertCircle } from 'lucide-react';
-
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface AlertDestructiveProps {
   onHideWarning: () => void;
+  description: string; // Ajout de la prop pour le texte de la description
 }
 
-export function AlertDestructive({ onHideWarning }: AlertDestructiveProps) {
+export function AlertDestructive({
+  onHideWarning,
+  description,
+}: AlertDestructiveProps) {
   const handleHideWarning = () => {
     onHideWarning();
   };
+
   return (
     <Alert variant="destructive" className="relative">
       <button
@@ -20,10 +24,7 @@ export function AlertDestructive({ onHideWarning }: AlertDestructiveProps) {
       </button>
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>Warning</AlertTitle>
-      <AlertDescription>
-        You cannot submit your answers until you have provided responses to all
-        questions.
-      </AlertDescription>
+      <AlertDescription>{description}</AlertDescription>
     </Alert>
   );
 }
