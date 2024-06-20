@@ -22,6 +22,7 @@ const HomeTabs = () => {
     isLoading,
     error,
   } = useGetMicrocredentials(token);
+  console.log(microcredentialsData);
 
   return (
     <div className="h-full px-2 pt-4">
@@ -44,10 +45,10 @@ const HomeTabs = () => {
       ) : (
         <div className="py-5 flex flex-col md:flex-row max-md:space-y-3 md:space-x-3">
           {microcredentialsData.map((microcredential: any) => {
-            const firstCourseId =
-              microcredential.modules && microcredential.modules.length > 0
-                ? microcredential.modules[0].module.cours
-                : null;
+            // const firstCourseId =
+            //   microcredential.modules && microcredential.modules.length > 0
+            //     ? microcredential.modules[0].module.cours
+            //     : null;
             return (
               <React.Fragment key={microcredential.micro_credential._id}>
                 {microcredential.accessStatus ? (
@@ -55,7 +56,7 @@ const HomeTabs = () => {
                     microCredential={microcredential.micro_credential}
                     accessStatus={microcredential.accessStatus}
                     microCredentialId={microcredential.micro_credential._id}
-                    currentId={firstCourseId}
+                    currentId="lkj"
                   />
                 ) : (
                   <AlertDialog key={microcredential.micro_credential._id}>
@@ -67,7 +68,7 @@ const HomeTabs = () => {
                           microCredentialId={
                             microcredential.micro_credential._id
                           }
-                          currentId={firstCourseId}
+                          currentId="kjhg"
                         />
                       </button>
                     </AlertDialogTrigger>

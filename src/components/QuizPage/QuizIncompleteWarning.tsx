@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface AlertDestructiveProps {
   onHideWarning: () => void;
-  description: string; // Ajout de la prop pour le texte de la description
+  description: string;
 }
 
 export function AlertDestructive({
