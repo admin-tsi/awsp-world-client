@@ -10,6 +10,7 @@ import { ReactElement } from 'react';
 export default function Page() {
   const params = useSearchParams();
   const coursId = params.get('cours');
+
   const token = useBearStore((state) => state.token);
   const {
     data: description,
@@ -32,7 +33,7 @@ export default function Page() {
               content={description.description}
             />
           )
-        )}{' '}
+        )}
       </div>
     </div>
   );

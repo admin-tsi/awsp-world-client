@@ -2,10 +2,22 @@ import fetcher from '@/utils/fetcher';
 import useSWR from 'swr';
 import { axiosInstance } from './axiosInstance';
 
-export const useGetQuizz = (token: any, quizzId: any) => {
-  const { data, isLoading, error } = useSWR(
-    [`/quizzes/${quizzId}`, token],
-    ([url, token]) => fetcher(url, token),
+export const useGetQuizz = (
+  token: string | null,
+  quizzId: string | null,
+  microId: string | null
+) => {
+  const shouldFetch = token && quizzId && microId;
+
+  const {
+    data,
+    isValidating: isLoading,
+    error,
+  } = useSWR(
+    shouldFetch
+      ? [`/manages/credantials/${microId}/quizz/${quizzId}`, token]
+      : null,
+    ([url, token]) => fetcher(url, token as string),
     {
       revalidateOnFocus: false,
     }

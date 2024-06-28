@@ -9,9 +9,16 @@ import { ReactElement, useState } from 'react';
 
 export default function Page() {
   const params = useSearchParams();
+  const searchParams = useSearchParams();
   const quizId = params.get('quiz');
   const token = useBearStore((state) => state.token);
-  const { data: quizData, isLoading, error } = useGetQuizz(token, quizId);
+  const microcredential = searchParams.get('microcredential');
+  const {
+    data: quizData,
+    isLoading,
+    error,
+  } = useGetQuizz(token, quizId, microcredential);
+
   const [start, setStart] = useState(false);
   const handleStartQuiz = () => {
     setStart(true);
@@ -26,10 +33,11 @@ export default function Page() {
           </div>
         ) : (
           <QuizInstructions
-            name={quizData.name}
-            instructions={quizData.instructions}
-            duration={quizData.duration}
-            champScore={quizData.champScore}
+            name={quizData?.quizz?.name}
+            instructions={quizData?.quizz?.instructions}
+            duration={quizData?.quizz?.duration}
+            champScore={quizData?.quizz?.champScore}
+            status={quizData?.quizz_status}
             onStartQuiz={handleStartQuiz}
           />
         )
@@ -37,9 +45,9 @@ export default function Page() {
         <div className="h-full flex flex-col items-center justify-start pt-10 w-full">
           {quizData && (
             <QuizComponent
-              questions={quizData.questions}
-              quizzId={quizData._id}
-              duration={quizData.duration}
+              questions={quizData?.quizz?.questions}
+              quizzId={quizData?.quizz?._id}
+              duration={quizData?.quizz?.duration}
             />
           )}
         </div>

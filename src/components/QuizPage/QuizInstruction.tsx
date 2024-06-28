@@ -9,6 +9,7 @@ interface QuizInstructionsProps {
   instructions: string;
   duration: string;
   champScore: number;
+  status: string;
   onStartQuiz: () => void;
 }
 
@@ -27,8 +28,20 @@ const QuizInstructions: React.FC<QuizInstructionsProps> = ({
   instructions,
   duration,
   champScore,
+  status,
   onStartQuiz,
 }) => {
+  let message = '';
+  let showButton = true;
+
+  if (status === 'in_progress') {
+    message = 'You have already submitted once and failed.';
+    showButton = false;
+  } else if (status === 'finish') {
+    message = 'You have already submitted and succeeded.';
+    showButton = false;
+  }
+
   return (
     <div className="h-full flex justify-center flex-col space-y-4">
       <div className="flex items-center justify-center">
@@ -36,12 +49,15 @@ const QuizInstructions: React.FC<QuizInstructionsProps> = ({
           <h1 className="max-md:text-lg text-2xl max-md:font-bold opacity-[0.6]">
             {name}
           </h1>
+          {message && <div className="text-red-500">{message}</div>}
           <div className="pointer-events-none text-white">
             <MyEditorComponent content={instructions} />
           </div>
-          <Button variant="start" onClick={onStartQuiz}>
-            Get started now
-          </Button>
+          {showButton && (
+            <Button variant="start" onClick={onStartQuiz}>
+              Get started now
+            </Button>
+          )}
         </div>
         <div className="w-1/4 hidden md:flex justify-center">
           <Image

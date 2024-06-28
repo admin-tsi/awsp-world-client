@@ -9,6 +9,7 @@ import {
   QuizSubmission,
   QuizSubmissionResponse,
 } from '@/types/quizInterfaces';
+import { useSearchParams } from 'next/navigation';
 
 const QuizComponent: React.FC<{
   questions: Question[];
@@ -17,6 +18,10 @@ const QuizComponent: React.FC<{
 }> = ({ questions, quizzId, duration }) => {
   const [answers, setAnswers] = useState<string[][]>(questions.map(() => []));
   const [submit, setSubmit] = useState(false);
+  const params = useSearchParams();
+  const searchParams = useSearchParams();
+  const microId = searchParams.get('microcredential');
+
   const [submissionResponse, setSubmissionResponse] =
     useState<QuizSubmissionResponse | null>(null);
   const [showIncompleteWarning, setShowIncompleteWarning] = useState<{
@@ -63,6 +68,7 @@ const QuizComponent: React.FC<{
         questionId: question._id,
         answer: answers[index],
       })),
+      microId,
     };
 
     try {

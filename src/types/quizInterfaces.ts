@@ -11,6 +11,7 @@ export interface Answer {
 export interface QuizSubmission {
   quizzId: string;
   questionAnswers: Answer[];
+  microId: string | null;
 }
 
 export interface Question {
