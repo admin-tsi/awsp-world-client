@@ -92,11 +92,6 @@ const QuizComponent: React.FC<{
 
   return (
     <>
-      {/* <div className="w-full flex justify-end items-center md:w-2/3">
-        <div className="bg-gradient-to-r from-secondary to-primary p-[1px] rounded-md">
-          <Duration duration={duration} />
-        </div>
-      </div> */}
       {submit ? (
         <QuizResult result={submissionResponse} />
       ) : (

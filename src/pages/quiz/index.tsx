@@ -38,6 +38,7 @@ export default function Page() {
             duration={quizData?.quizz?.duration}
             champScore={quizData?.quizz?.champScore}
             status={quizData?.quizz_status}
+            quizzReviewDate={quizData?.quizz?.quizz_review_date}
             onStartQuiz={handleStartQuiz}
           />
         )
