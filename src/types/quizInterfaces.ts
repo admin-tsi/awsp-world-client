@@ -5,7 +5,7 @@ export interface Option {
 
 export interface Answer {
   questionId: string;
-  answer: string[];
+  answer: number[];
 }
 
 export interface QuizSubmission {

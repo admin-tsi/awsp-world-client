@@ -16,9 +16,8 @@ const QuizComponent: React.FC<{
   quizzId: string;
   duration: string;
 }> = ({ questions, quizzId, duration }) => {
-  const [answers, setAnswers] = useState<string[][]>(questions.map(() => []));
+  const [answers, setAnswers] = useState<number[][]>(questions.map(() => []));
   const [submit, setSubmit] = useState(false);
-  const params = useSearchParams();
   const searchParams = useSearchParams();
   const microId = searchParams.get('microcredential');
 
@@ -31,16 +30,16 @@ const QuizComponent: React.FC<{
   const [submitting, setSubmitting] = useState(false);
   const token = useBearStore((state) => state.token);
 
-  const handleOptionSelect = (questionIndex: number, optionValue: string) => {
+  const handleOptionSelect = (questionIndex: number, optionIndex: number) => {
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
-      const isSelected = newAnswers[questionIndex].includes(optionValue);
+      const isSelected = newAnswers[questionIndex].includes(optionIndex);
       if (isSelected) {
         newAnswers[questionIndex] = newAnswers[questionIndex].filter(
-          (value) => value !== optionValue
+          (index) => index !== optionIndex
         );
       } else {
-        newAnswers[questionIndex] = [...newAnswers[questionIndex], optionValue];
+        newAnswers[questionIndex] = [...newAnswers[questionIndex], optionIndex];
       }
       return newAnswers;
     });
@@ -70,6 +69,8 @@ const QuizComponent: React.FC<{
       })),
       microId,
     };
+
+    console.log(submission);
 
     try {
       const res: QuizSubmissionResponse = await submitQuizz(token, submission);
@@ -113,9 +114,9 @@ const QuizComponent: React.FC<{
                     <input
                       type="checkbox"
                       id={`question_${index}_option_${optionIndex}`}
-                      checked={answers[index].includes(option.option)}
-                      onChange={() => handleOptionSelect(index, option.option)}
-                      className="peer relative left-0 h-5 w-5 shrink-0 appearance-none rounded-sm border border-primary outline-none after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:after:bg-[url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmljb25fYnlfUG9zaGx5YWtvdjEwPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjZmZmZmZmIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNi4wMDAwMDAsIDI2LjAwMDAwMCkiPjxwYXRoIGQ9Ik0xNy45OTk5ODc4LDMyLjQgTDEwLjk5OTk4NzgsMjUuNCBDMTAuMjI2Nzg5MSwyNC42MjY4MDE0IDguOTczMTg2NDQsMjQuNjI2ODAxNCA4LjE5OTk4Nzc5LDI1LjQgTDguMTk5OTg3NzksMjUuNCBDNy40MjY3ODkxNCwyNi4xNzMxOTg2IDcuNDI2Nzg5MTQsMjcuNDI2ODAxNCA4LjE5OTk4Nzc5LDI4LjIgTDE2LjU4NTc3NDIsMzYuNTg1Nzg2NCBDMTcuMzY2ODIyOCwzNy4zNjY4MzUgMTguNjMzMTUyOCwzNy4zNjY4MzUgMTkuNDE0MjAxNCwzNi41ODU3ODY0IEw0MC41OTk5ODc4LDE1LjQgQzQxLjM3MzE4NjQsMTQuNjI2ODAxNCA0MS4zNzMxODY0LDEzLjM3MzE5ODYgNDAuNTk5OTg3OCwxMi42IEw0MC41OTk5ODc4LDEyLjYgQzM5LjgyNjc4OTEsMTEuODI2ODAxNCAzOC41NzMxODY0LDExLjgyNjgwMTQgMzcuNzk5OTg3OCwxMi42IEwxNy45OTk5ODc4LDMyLjQgWiI+PC9wYXRoPjwvZz48L2c+PC9nPjwvc3ZnPg==')] after:bg-[length:40px] after:bg-center after:bg-no-repeat after:content-[''] checked:bg-primary/50 hover:ring hover:ring-primary"
+                      checked={answers[index].includes(optionIndex)}
+                      onChange={() => handleOptionSelect(index, optionIndex)}
+                      className="peer relative left-0 h-5 w-5 shrink-0 appearance-none rounded-sm border border-primary outline-none after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:after:bg-[url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiPjx0aXRsZT5pY29uX2J5X1Bvc2hsZGlha292MTA8L3RpdGxlPjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPjxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2LjAwMDAwMCwgMjYuMDAwMDAwKSI+PHBhdGggZD0iTTE3Ljk5OTk4NzgsMzIuNCBMMTAuOTk5OTg3OCwyNS40IEMxMC4yMjY3ODkxLDI0LjYyNjgwMTQgOC45NzMxODY0NCwyNC42MjY4MDE0IDguMTk5OTg3NzksMjUuNCBMOD4xOTk5ODc3OSwyNS40IEM3LjQyNjc4OTE0LDI2LjE3MzE5ODYgNy40MjY3ODkxNCwyNy40MjY4MDE0IDguMTk5OTg3NzksMjguMiBMMTYuNTg1Nzc0MiwzNi41ODU3ODY0IEMxNy4zNjY4MjI4LDM3LjM2NjgzNSAxOC42MzMxNTI4LDM3LjM2NjgzNSAxOS40MTQyMDE0LDM2LjU4NTc4NjQgTDQwLjU5OTk4NzgsMTUuNCBDNDEuMzczMTg2NCwxNC42MjY4MDE0IDQxLjM3MzE4NjQsMTMuMzczMTk4NiA0MC41OTk5ODc4LDEyLjYgTDQwLjU5OTk4NzgsMTIuNiBDMzkuODI2Nzg5MSwxMS44MjY4MDE0IDM4LjU3MzE4NjQsMTEuODI2ODAxNCAzNy43OTk5ODc4LDEyLjYgTDE3Ljk5OTk4NzgsMzIuNCBaIj48L3BhdGg+PC9nPjwvZz48L2c+PC9nPjwvc3ZnPg==')] after:bg-[length:40px] after:bg-center after:bg-no-repeat after:content-[''] checked:bg-primary/50 hover:ring hover:ring-primary"
                     />
                     <label
                       htmlFor={`question_${index}_option_${optionIndex}`}
