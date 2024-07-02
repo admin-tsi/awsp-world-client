@@ -1,11 +1,8 @@
 import { Button } from '@/components/ui/button';
-import BelIcon from '@/svg/belIcon';
+import AuthAPI from '@/services/auth/initUser';
 import ExitIcon from '@/svg/exitIcon';
 import Image from 'next/image';
-import React from 'react';
 import logo from '../../../public/logo_AWSP.png';
-import SearchBar from '../SearchBar';
-import AuthAPI from '@/services/auth/initUser';
 
 type Props = {};
 
