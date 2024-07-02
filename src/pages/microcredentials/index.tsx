@@ -39,7 +39,7 @@ const Page: NextPageWithLayout = () => {
               <div className="absolute bg-gradient-to-r from-secondary to-primary h-2 w-full bottom-0 rounded-t-lg"></div>
             )}
           </div>
-          <div className="relative">
+          {/* <div className="relative">
             <Button
               variant="moduleTab"
               size="moduleTabEl"
@@ -62,7 +62,7 @@ const Page: NextPageWithLayout = () => {
             {activeTab === 'Accomplishments' && (
               <div className="absolute bg-gradient-to-r from-secondary to-primary h-2 w-full bottom-0 rounded-t-lg"></div>
             )}
-          </div>
+          </div> */}
         </div>
         <div className="w-full h-[1.5px] bg-gradient-to-r from-secondary to-primary"></div>
         <div className="mt-4">{content}</div>

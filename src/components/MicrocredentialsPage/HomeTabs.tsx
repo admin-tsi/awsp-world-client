@@ -42,7 +42,7 @@ const HomeTabs = () => {
           <CardSkeleton />
         </div>
       ) : (
-        <div className="py-5 flex flex-col md:flex-row max-md:space-y-3 md:space-x-3">
+        <div className="py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {microcredentialsData.map((microcredential: any) => {
             // const firstCourseId =
             //   microcredential.modules && microcredential.modules.length > 0
