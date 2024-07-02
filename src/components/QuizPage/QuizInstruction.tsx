@@ -42,7 +42,6 @@ const QuizInstructions: React.FC<QuizInstructionsProps> = ({
   let message = '';
   let showButton = false;
 
-  console.log('jdd', quizzReviewDate);
 
   if (status === 'in_progress') {
     message = `You have already submitted once and failed. Come back on ${
