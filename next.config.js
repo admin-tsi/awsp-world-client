@@ -2,12 +2,9 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'awsp-world-backend-staging.up.railway.app',
-        pathname: '/uploads/**',
-      },
+    domains: [
+      'awsp-world-backend-production.up.railway.app',
+      'res.cloudinary.com',
     ],
   },
 };

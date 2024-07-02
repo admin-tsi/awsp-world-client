@@ -1,4 +1,5 @@
 import React from 'react';
+import MyEditorComponent from '../Editor';
 
 type Props = {
   title: string;
@@ -9,7 +10,10 @@ const CoursDescription = (props: Props) => {
   return (
     <>
       <span className="text-xl text-primary">{props.title}</span>
-      <p className="text-sm md:text-lg text-white">{props.content}</p>
+      <MyEditorComponent
+        className="text-sm md:text-lg text-white"
+        content={props.content}
+      />
     </>
   );
 };
