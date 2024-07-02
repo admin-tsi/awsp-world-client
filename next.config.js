@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'awsp-world-backend-staging.up.railway.app',
+        hostname: 'awsp-world-backend-production.up.railway.app',
         pathname: '/uploads/**',
       },
     ],
