@@ -18,7 +18,7 @@ function SidebarDesktop({}: Props) {
   } = useGetMicrocredentialsContent(token, microcredential);
 
   return (
-    <aside className="w-full h-[100dvh]  border-r border-gray-500 font-sans">
+    <aside className="w-full h-[100vh]  border-r border-gray-500 font-sans overflow-y-scroll">
       <div className="h-full px-3 pt-32 flex flex-col">
         <h3 className="mx-3 text-sm font-semibold text-primary fixed top-8">
           Course Content

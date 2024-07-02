@@ -62,9 +62,21 @@ async function refreshUserInfo(token: any) {
   }
 }
 
+function logout() {
+  const redirectUrl = process.env.NEXT_PUBLIC_AWSP_AFRICA_URL;
+
+  if (typeof redirectUrl === 'string') {
+    localStorage.removeItem('token');
+    window.location.href = redirectUrl;
+  } else {
+    console.error('Redirect URL is not defined');
+  }
+}
+
 const AuthAPI = {
   getUserInfo,
   refreshUserInfo,
+  logout,
 };
 
 export default AuthAPI;

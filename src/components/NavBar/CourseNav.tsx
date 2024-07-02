@@ -5,10 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../../public/logo_AWSP.png';
 import { Button } from '../ui/button';
+import AuthAPI from '@/services/auth/initUser';
 
 type Props = {};
 
 const CourseNav = (props: Props) => {
+  const handleLogout = () => {
+    AuthAPI.logout();
+  };
+
   return (
     <nav className="w-full bg-background absolute top-0 z-50 h-20 px-5 flex items-center justify-between shadow">
       <div className="hidden md:flex items-center space-x-4 cursor-pointer">
@@ -23,15 +28,8 @@ const CourseNav = (props: Props) => {
         <Image src={logo} alt="Logo AWSP" />
       </div>
       <div className="flex items-center space-x-5">
-        <span className="hidden md:block bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent font-sans">
-          Mark as Complete
-        </span>
-        <div className="bg-secondary w-1 h-8 hidden md:block"></div>
         <div className="flex space-x-2">
-          <Button variant="navButton">
-            <BelIcon />
-          </Button>
-          <Button variant="navButton">
+          <Button variant="navButton" onClick={handleLogout}>
             <ExitIcon />
           </Button>
         </div>

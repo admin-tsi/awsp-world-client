@@ -22,7 +22,6 @@ const HomeTabs = () => {
     isLoading,
     error,
   } = useGetMicrocredentials(token);
-  console.log(microcredentialsData);
 
   return (
     <div className="h-full px-2 pt-4">
