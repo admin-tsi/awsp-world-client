@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'awsp-world-backend-production.up.railway.app',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'awsp-world-backend-staging.up.railway.app',
+        pathname: '/uploads/**',
+      },
     ],
   },
 };
